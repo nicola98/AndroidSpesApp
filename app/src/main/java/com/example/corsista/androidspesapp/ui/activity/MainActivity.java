@@ -1,7 +1,9 @@
-package com.example.corsista.androidspesapp;
+package com.example.corsista.androidspesapp.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.corsista.androidspesapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

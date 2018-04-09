@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidSpesApp</string>
+    <string name="page1">ciao questo è il tutorial</string>
+    <string name="page2">sei a metà tutorial</string>
+    <string name="page3">hai finito il tutorial</string>
+    <string name="uno">first page</string>
+    <string name="due">second page</string>
+    <string name="tre">three page</string>
 </resources>

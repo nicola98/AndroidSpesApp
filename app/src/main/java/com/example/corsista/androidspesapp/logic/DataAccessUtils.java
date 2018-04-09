@@ -23,9 +23,9 @@ public class DataAccessUtils {
 
     }
 
-    public static boolean removeItem(Context context, long contactId) {
+    public static boolean removeItem(Context context, long userId) {
 
-        return MainSingleton.getInstance().getDatabaseManager().deleteContact(contactId);
+        return MainSingleton.getInstance().getDatabaseManager().deleteContact(userId);
 
     }
 

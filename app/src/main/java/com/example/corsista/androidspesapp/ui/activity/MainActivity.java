@@ -20,10 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         if(true)
         {
             Intent intent = new Intent(getApplicationContext(), Tutorial.class);
             startActivity(intent);
         }
+
+        //visualizza liste
     }
 }

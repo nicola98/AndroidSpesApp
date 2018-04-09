@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/page1"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/skip1"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:clickable="true"
+        android:text="@string/skip" />
+
+    <TextView
+        android:id="@+id/next1"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/skip1"
+        android:layout_alignBottom="@+id/skip1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:clickable="true"
+        android:text="@string/next" />
+
+</RelativeLayout>

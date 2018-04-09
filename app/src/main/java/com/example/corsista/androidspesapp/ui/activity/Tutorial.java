@@ -16,13 +16,14 @@ import com.example.corsista.androidspesapp.ui.adapter.SimpleFragmentPagerAdapter
 
 public class Tutorial extends AppCompatActivity {
 
+    public  static ViewPager viewPager;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tutorial_layout);
 
         // Find the view pager that will allow the user to swipe between fragments
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         // Create an adapter that knows which fragment should be shown on each page
         SimpleFragmentPagerAdapter adapter = new SimpleFragmentPagerAdapter(this, getSupportFragmentManager());
         // Set the adapter onto the view pager

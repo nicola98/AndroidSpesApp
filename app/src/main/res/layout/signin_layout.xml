@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="60dp"
+    android:layout_marginStart="60dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIGN IN"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"/>
+
+    <EditText
+        android:layout_width="@dimen/editText"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blueLightText"
+        android:id="@+id/name"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Surname" />
+
+    <EditText
+        android:layout_width="@dimen/editText"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blueLightText"
+        android:id="@+id/surname"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choose your image" />
+
+        <ImageView
+            android:id="@+id/MyImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:background="@drawable/border_image"
+            android:cropToPadding="true"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
+           />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email" />
+
+    <EditText
+        android:layout_width="@dimen/editText"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blueLightText"
+        android:id="@+id/email"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username" />
+
+    <EditText
+        android:layout_width="@dimen/editText"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blueLightText"
+        android:id="@+id/username"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        />
+
+    <EditText
+        android:layout_width="@dimen/editText"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blueLightText"
+        android:inputType="textPassword"
+        android:id="@+id/password"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueLight"
+        android:text="Sign In"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have already an account?
+                      Login"
+            android:textColor="@color/textUnderButton" />
+    </LinearLayout>
+
+</LinearLayout>

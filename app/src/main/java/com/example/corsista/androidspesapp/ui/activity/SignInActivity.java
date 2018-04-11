@@ -8,8 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.corsista.androidspesapp.R;
+import com.example.corsista.androidspesapp.data.DatabaseHelper;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
 import com.example.corsista.androidspesapp.data.User;
 
@@ -32,6 +34,7 @@ public class SignInActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_layout);
+        DatabaseHelper db = new DatabaseHelper(this);
         databaseManager = new DatabaseManager(this);
         editTextname = (EditText) findViewById(R.id.name);
         editTextsurname = (EditText)findViewById(R.id.surname);
@@ -42,16 +45,26 @@ public class SignInActivity extends Activity {
         signInButton = (Button)findViewById(R.id.signIn);
         backToLogin = (TextView)findViewById(R.id.backToLogin);
 
+
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User user;
-                if(imageViewurlImage==null)
+               if(imageViewurlImage.toString()==null)
                 user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(), imageViewurlImage.toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
                 else
                 user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
 
+
+                if(user == null)
+                {
+                    Toast.makeText(getApplicationContext(),  " null", Toast.LENGTH_LONG).show();
+                }
+                Toast.makeText(getApplicationContext(),  " not null", Toast.LENGTH_LONG).show();
+                databaseManager.open();
                 databaseManager.createUser(user);
+                databaseManager.close();
+                finish();
             }
         });
         backToLogin.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +72,7 @@ public class SignInActivity extends Activity {
             public void onClick(View v) {
                Intent intent = new Intent(SignInActivity.this,Login.class);
                startActivity(intent);
+
             }
         });
 

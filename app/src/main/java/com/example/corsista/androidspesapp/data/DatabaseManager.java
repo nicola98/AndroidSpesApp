@@ -82,4 +82,9 @@ public class DatabaseManager {
        cursor.close();
        return  found;
     }
+
+    public Cursor readUser(String username) {
+        String[] columns = new String[]{KEY_USERNAME};
+        return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
+    }
 }

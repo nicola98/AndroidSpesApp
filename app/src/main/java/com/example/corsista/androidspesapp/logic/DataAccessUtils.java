@@ -1,7 +1,6 @@
 package com.example.corsista.androidspesapp.logic;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 
 import com.example.corsista.androidspesapp.data.MainSingleton;
@@ -19,13 +18,13 @@ public class DataAccessUtils {
 
     public static long addItemToDataSource(Context context, User itemToAdd) {
 
-        return MainSingleton.getInstance().getDatabaseManager().createContact(itemToAdd);
+        return MainSingleton.getInstance().getDatabaseManager().createUser(itemToAdd);
 
     }
 
     public static boolean removeItem(Context context, long userId) {
 
-        return MainSingleton.getInstance().getDatabaseManager().deleteContact(userId);
+        return MainSingleton.getInstance().getDatabaseManager().deleteUser(userId);
 
     }
 

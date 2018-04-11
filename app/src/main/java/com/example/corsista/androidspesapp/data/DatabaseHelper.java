@@ -10,7 +10,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Lo statement SQL di creazione del database
-    private static final String DATABASE_CREATE =
+    private static final String DATABASE_CREATE=
             "CREATE TABLE "+DatabaseManager.USER_TABLE +" ("+
                     DatabaseManager.KEY_CONTACTID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     DatabaseManager.KEY_NAME + " TEXT, " +

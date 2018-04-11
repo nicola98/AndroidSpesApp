@@ -7,5 +7,6 @@
     <color name="blueLightText">#B2DAF1</color>
     <color name="white">#FFFFFF</color>
     <color name="textUnderButton">#225081</color>
+    <color name="red">#FF0000</color>
 
 </resources>

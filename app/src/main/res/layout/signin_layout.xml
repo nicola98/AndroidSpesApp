@@ -105,7 +105,8 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/blueLight"
         android:text="Sign In"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:id="@+id/signIn"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -118,7 +119,8 @@
             android:layout_height="wrap_content"
             android:text="You have already an account?
                       Login"
-            android:textColor="@color/textUnderButton" />
+            android:textColor="@color/textUnderButton"
+            android:id="@+id/backToLogin"/>
     </LinearLayout>
 
 </LinearLayout>

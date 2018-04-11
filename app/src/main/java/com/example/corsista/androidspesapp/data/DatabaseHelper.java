@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Simone Cimoli on 05/04/18.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "shopMyListDatabase.db";
@@ -15,7 +11,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Lo statement SQL di creazione del database
     private static final String DATABASE_CREATE =
-            "CREATE TABLE "+DatabaseManager.DATABASE_TABLE+" ("+
+            "CREATE TABLE "+DatabaseManager.USER_TABLE +" ("+
                     DatabaseManager.KEY_CONTACTID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     DatabaseManager.KEY_NAME + " TEXT, " +
                     DatabaseManager.KEY_SURNAME + " TEXT, " +
@@ -40,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // ad esempio quando viene incrementato il numero di versione
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion ) {
-        database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.DATABASE_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.USER_TABLE);
         onCreate(database);
     }
 }

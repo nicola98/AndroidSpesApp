@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginEnd="60dp"
-    android:layout_marginStart="60dp"
+    android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
@@ -21,24 +20,32 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:text="Name"/>
 
     <EditText
-        android:layout_width="@dimen/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:textColor="@color/blueLightText"
         android:id="@+id/name"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:text="Surname" />
 
     <EditText
-        android:layout_width="@dimen/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:textColor="@color/blueLightText"
         android:id="@+id/surname"/>
 
@@ -66,46 +73,61 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:text="Email" />
 
     <EditText
-        android:layout_width="@dimen/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:textColor="@color/blueLightText"
         android:id="@+id/email"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:text="Username" />
 
     <EditText
-        android:layout_width="@dimen/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:textColor="@color/blueLightText"
         android:id="@+id/username"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:text="Password"
         />
 
     <EditText
-        android:layout_width="@dimen/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/blueLightText"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:inputType="textPassword"
         android:id="@+id/password"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginStart="60dp"
         android:backgroundTint="@color/blueLight"
         android:text="Sign In"
         android:textColor="@color/white"
+        android:layout_marginTop="15dp"
         android:id="@+id/signIn"/>
 
     <LinearLayout
@@ -115,12 +137,26 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You have already an account?
-                      Login"
+            android:layout_marginTop="42dp"
+            android:gravity="center"
+            android:text="You have already an account?"
             android:textColor="@color/textUnderButton"
-            android:id="@+id/backToLogin"/>
+            />
+
+        <TextView
+            android:id="@+id/backToLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="Sign Up"
+            android:textColor="@color/blueLight"
+            android:textSize="22dp" />
+
+
     </LinearLayout>
 
 </LinearLayout>

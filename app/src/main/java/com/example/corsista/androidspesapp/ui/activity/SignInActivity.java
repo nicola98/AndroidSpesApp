@@ -19,6 +19,7 @@ public class SignInActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_layout);
+
         DatabaseManager databaseManager = new DatabaseManager(this);
         EditText editTextname = (EditText) findViewById(R.id.name);
         EditText editTextsurname = (EditText)findViewById(R.id.surname);

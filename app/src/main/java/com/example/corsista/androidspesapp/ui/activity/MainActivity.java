@@ -9,12 +9,11 @@ import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
 
 public class MainActivity extends AppCompatActivity {
-    EditText mEdit;
-    Button logged;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_layout);
+        setContentView(R.layout.activity_main);
 
 
 

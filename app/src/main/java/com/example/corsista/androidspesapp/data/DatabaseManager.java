@@ -18,6 +18,7 @@ public class DatabaseManager {
 
     // Database constants
     public static final String DATABASE_TABLE = "user";
+    public static final String DATABASE_TABLE_LIST = "listDelleListe";
     public static final String KEY_CONTACTID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_SURNAME = "surname";
@@ -73,6 +74,34 @@ public class DatabaseManager {
 
     //fetch all contacts
     public Cursor fetchAllUsers() {
+        return database.query(DATABASE_TABLE, null, null, null, null, null, null);
+    }
+
+    private ContentValues createListListValues(String name) {
+        ContentValues values = new ContentValues();
+        values.put( KEY_NAME, name );
+        return values;
+    }
+
+    //mettere invece di user tua classe lista
+    public long createListaList(User user ) {
+        ContentValues initialValues = createContentValues(user.getName());
+        return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
+    }
+
+    //mettere invece di user tua classe lista
+    public boolean updateListaList(int listaListID, User user) {
+        ContentValues updateValues = createContentValues(user.getName());
+        return database.update(DATABASE_TABLE, updateValues, KEY_CONTACTID + "=" + listaListID, null) > 0;
+    }
+
+    //delete a contact
+    public boolean deleteListaList(long listaListID) {
+        return database.delete(DATABASE_TABLE, KEY_CONTACTID + "=" + listaListID, null) > 0;
+    }
+
+    //fetch all contacts
+    public Cursor fetchAllListaList() {
         return database.query(DATABASE_TABLE, null, null, null, null, null, null);
     }
 }

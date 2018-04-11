@@ -6,9 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by Simone Cimoli on 05/04/18.
- */
 
 public class DatabaseManager {
 
@@ -17,7 +14,7 @@ public class DatabaseManager {
     private Context mContext;
 
     // Database constants
-    public static final String DATABASE_TABLE = "user";
+    public static final String USER_TABLE = "user";
     public static final String KEY_CONTACTID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_SURNAME = "surname";
@@ -55,24 +52,35 @@ public class DatabaseManager {
     }
 
     //create a user
-    public long createContact(User user ) {
+    public long createUser(User user ) {
         ContentValues initialValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
-        return database.insertOrThrow(DATABASE_TABLE, null, initialValues);
+        return database.insertOrThrow(USER_TABLE, null, initialValues);
     }
 
     //update a user
-    public boolean updateContact(int contactID, User user) {
+    public boolean updateUser(int contactID, User user) {
         ContentValues updateValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
-        return database.update(DATABASE_TABLE, updateValues, KEY_CONTACTID + "=" + contactID, null) > 0;
+        return database.update(USER_TABLE, updateValues, KEY_CONTACTID + "=" + contactID, null) > 0;
     }
 
     //delete a contact
-    public boolean deleteContact(long userID) {
-        return database.delete(DATABASE_TABLE, KEY_CONTACTID + "=" + userID, null) > 0;
+    public boolean deleteUser(long userID) {
+        return database.delete(USER_TABLE, KEY_CONTACTID + "=" + userID, null) > 0;
     }
 
     //fetch all contacts
     public Cursor fetchAllUsers() {
-        return database.query(DATABASE_TABLE, null, null, null, null, null, null);
+        return database.query(USER_TABLE, null, null, null, null, null, null);
     }
+
+    public boolean checkUser(String username, String password) {
+       Cursor cursor = database.query(USER_TABLE, null, KEY_USERNAME + " = ? AND "+ KEY_PASSWORD+ " = ?", new String[]{username, password}, null, null, null);
+
+       cursor.getString(cursor.getColumnIndex(KEY_USERNAME));
+
+       boolean found = cursor != null && cursor.getCount() > 0;
+       cursor.close();
+       return  found;
+    }
+
 }

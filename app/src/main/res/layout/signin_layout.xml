@@ -23,12 +23,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/name" />
+        android:text="@string/name"/>
 
     <EditText
         android:layout_width="@dimen/editText"
         android:layout_height="wrap_content"
-        android:textColor="@color/blueLightText" />
+        android:textColor="@color/blueLightText"
+        android:id="@+id/name"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +39,8 @@
     <EditText
         android:layout_width="@dimen/editText"
         android:layout_height="wrap_content"
-        android:textColor="@color/blueLightText" />
+        android:textColor="@color/blueLightText"
+        android:id="@+id/surname"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,14 +54,15 @@
             android:text="choose your image" />
 
         <ImageView
-            android:id="@+id/myImage"
+            android:id="@+id/MyImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
 
             android:background="@drawable/border_image"
             android:cropToPadding="true"
             android:padding="1dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+           />
     </LinearLayout>
 
     <TextView
@@ -70,7 +73,8 @@
     <EditText
         android:layout_width="@dimen/editText"
         android:layout_height="wrap_content"
-        android:textColor="@color/blueLightText" />
+        android:textColor="@color/blueLightText"
+        android:id="@+id/email"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,7 +84,8 @@
     <EditText
         android:layout_width="@dimen/editText"
         android:layout_height="wrap_content"
-        android:textColor="@color/blueLightText" />
+        android:textColor="@color/blueLightText"
+        android:id="@+id/username"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -92,7 +97,8 @@
         android:layout_width="@dimen/editText"
         android:layout_height="wrap_content"
         android:textColor="@color/blueLightText"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:id="@+id/password"/>
 
     <Button
         android:layout_width="match_parent"

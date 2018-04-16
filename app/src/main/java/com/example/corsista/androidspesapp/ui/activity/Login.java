@@ -40,20 +40,17 @@ public class Login extends AppCompatActivity {
                 DatabaseManager dbManager = new DatabaseManager(getApplicationContext());
                 dbManager.open();
                 Cursor cursor = dbManager.readUser(usernameString);
-                // Log.d("cursor", String.valueOf(cursor.moveToFirst()));
                 boolean chekLogin = false;
-                while (cursor.moveToNext()) {
+                if (cursor.moveToFirst()) {
                     String passwordTrovata = cursor.getString(cursor.getColumnIndex(KEY_PASSWORD));
                     if (passwordString.equals(passwordTrovata)) {
                         chekLogin = true;
                         if (cursor.getInt(cursor.getColumnIndex(KEY_FIRSTTIME)) == 1) {
                             dbManager.updateFirstTime(usernameString);
-                            Toast.makeText(getApplicationContext(),  cursor.getString(cursor.getColumnIndex("firstTime")), Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(Login.this, Tutorial.class);
                             intent.putExtra("username", usernameString);
                             startActivity(intent);
                         } else {
-                            Log.d("ciao", "non entrato");
                             Intent intent = new Intent(Login.this, MainActivity.class);
                             intent.putExtra("username", usernameString);
                             startActivity(intent);

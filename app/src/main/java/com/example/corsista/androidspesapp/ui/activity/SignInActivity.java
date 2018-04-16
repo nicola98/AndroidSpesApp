@@ -2,6 +2,7 @@ package com.example.corsista.androidspesapp.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -50,21 +51,28 @@ public class SignInActivity extends Activity {
             @Override
             public void onClick(View v) {
             User user;
-            if(imageViewurlImage.toString()==null)
-                user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(), imageViewurlImage.toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
-            else
-                user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
 
+            if(editTextname.getText().toString().equals("") || editTextsurname.getText().toString().equals("") || imageViewurlImage.toString().equals("") || editTextemail.getText().toString().equals("") || editTextusername.getText().toString().equals("") || editTextpassword.getText().toString().equals(""))
+                Toast.makeText(getApplicationContext(),  "almeno un campo vuoto", Toast.LENGTH_LONG).show();
+            else {
+                if (imageViewurlImage.toString() == null)
+                    user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(), imageViewurlImage.toString(), editTextemail.getText().toString(), editTextusername.getText().toString(), editTextpassword.getText().toString());
+                else
+                    user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(), editTextemail.getText().toString(), editTextusername.getText().toString(), editTextpassword.getText().toString());
 
-            if(user == null)
-            {
-                Toast.makeText(getApplicationContext(),  " null", Toast.LENGTH_LONG).show();
+                databaseManager.open();
+
+                Cursor cursor = databaseManager.readUser(editTextusername.getText().toString());
+                if (cursor.moveToFirst()) {
+                    Toast.makeText(getApplicationContext(), "username già esistente", Toast.LENGTH_LONG).show();
+                    TextView textView = findViewById(R.id.username);
+                    textView.setText("");
+                } else {
+                    databaseManager.createUser(user);
+                    finish();
+                }
+                databaseManager.close();
             }
-            Toast.makeText(getApplicationContext(),  " not null", Toast.LENGTH_LONG).show();
-            databaseManager.open();
-            databaseManager.createUser(user);
-            databaseManager.close();
-            finish();
             }
         });
         backToLogin.setOnClickListener(new View.OnClickListener() {

@@ -26,8 +26,8 @@ public class Login extends AppCompatActivity {
         String usernameGet = SharedPreferenceUtility.readUserFromSharedPreferences(getApplicationContext());
         if( usernameGet == null) {
             setContentView(R.layout.login_layout);
-            Button detailButton = (Button) findViewById(R.id.loginButton);
-            detailButton.setOnClickListener(new View.OnClickListener() {
+            Button loginButton = (Button) findViewById(R.id.loginButton);
+            loginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     EditText username = (EditText) findViewById(R.id.editTextUser);

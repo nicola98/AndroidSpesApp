@@ -24,18 +24,11 @@ public class MainActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPref = getApplicationContext().
-                        getSharedPreferences("Username", Context.MODE_PRIVATE );
-                SharedPreferences.Editor editor = sharedPref.edit();
 
-                editor.remove("User");
-                Toast.makeText(getApplicationContext(), SharedPreferenceUtility.readUserFromSharedPreferences(MainActivity.this), Toast.LENGTH_LONG).show();
+                SharedPreferenceUtility.setUserOnSharedPreferences(null, MainActivity.this);
                 finish();
-
                 Intent intent = new Intent(MainActivity.this,Login.class);
                 startActivity(intent);
-
-
             }
         });
 

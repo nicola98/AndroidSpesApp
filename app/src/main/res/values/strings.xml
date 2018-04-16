@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">AndroidSpesApp</string>
-    <string name="page1">ciao questo è il tutorial</string>
-    <string name="page2">sei a metà tutorial</string>
-    <string name="page3">hai finito il tutorial</string>
+    <string name="firstLinePage1"><b>Crea</b> e <b>Organizza</b> le tue liste</string>
+    <string name="secondLinePage1">Le tue liste della spesa saranno sempre a disposizione</string>
+    <string name="thirdLinePage1">Organizzale in base alle tue esigenze!</string>
+    <string name="firstLinepage2">Inserisci gli articoli</string>
+    <string name="secondLinepage2">Aggiorna la tua lista con gli articoli che vuoi acquistare</string>
+    <string name="firstLinepage3">Fai la spesa</string>
+    <string name="secondLinepage3">Fai la spesa e aggiorna la tua lista</string>
     <string name="uno">first page</string>
     <string name="due">second page</string>
     <string name="tre">three page</string>

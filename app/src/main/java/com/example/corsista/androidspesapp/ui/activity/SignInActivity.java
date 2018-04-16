@@ -49,29 +49,29 @@ public class SignInActivity extends Activity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user;
-               if(imageViewurlImage.toString()==null)
+            User user;
+            if(imageViewurlImage.toString()==null)
                 user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(), imageViewurlImage.toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
-                else
+            else
                 user = new User(editTextname.getText().toString(), editTextsurname.getText().toString(),editTextemail.getText().toString(),editTextusername.getText().toString(),editTextpassword.getText().toString());
 
 
-                if(user == null)
-                {
-                    Toast.makeText(getApplicationContext(),  " null", Toast.LENGTH_LONG).show();
-                }
-                Toast.makeText(getApplicationContext(),  " not null", Toast.LENGTH_LONG).show();
-                databaseManager.open();
-                databaseManager.createUser(user);
-                databaseManager.close();
-                finish();
+            if(user == null)
+            {
+                Toast.makeText(getApplicationContext(),  " null", Toast.LENGTH_LONG).show();
+            }
+            Toast.makeText(getApplicationContext(),  " not null", Toast.LENGTH_LONG).show();
+            databaseManager.open();
+            databaseManager.createUser(user);
+            databaseManager.close();
+            finish();
             }
         });
         backToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(SignInActivity.this,Login.class);
-               startActivity(intent);
+           Intent intent = new Intent(SignInActivity.this,Login.class);
+           startActivity(intent);
 
             }
         });

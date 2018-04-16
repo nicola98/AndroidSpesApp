@@ -84,7 +84,8 @@ public class DatabaseManager {
     }
 
     public Cursor readUser(String username) {
-        String[] columns = new String[]{KEY_USERNAME};
+        String[] columns = new String[]{KEY_PASSWORD};
         return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
     }
+
 }

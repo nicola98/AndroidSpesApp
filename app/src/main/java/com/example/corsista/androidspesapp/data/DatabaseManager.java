@@ -15,7 +15,11 @@ public class DatabaseManager {
 
     // Database constants
     public static final String USER_TABLE = "user";
-    public static final String KEY_CONTACTID = "_id";
+    public static final String PRODUCT_TABLE = "product";
+    public static final String NAME_TABLE = "name";
+    public static final String KEY_ID = "_id";
+    public static final String KEY_ID_RIFERIMENTO_USER = "_id_user";
+    public static final String KEY_ID_RIFERIMENTO_PRODUCT = "_id_product";
     public static final String KEY_NAME = "name";
     public static final String KEY_SURNAME = "surname";
     public static final String KEY_URLIMAGE = "urlImage";
@@ -60,7 +64,7 @@ public class DatabaseManager {
     //update a user
     public boolean updateUser(int contactID, User user) {
         ContentValues updateValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
-        return database.update(USER_TABLE, updateValues, KEY_CONTACTID + "=" + contactID, null) > 0;
+        return database.update(USER_TABLE, updateValues, KEY_ID + "=" + contactID, null) > 0;
     }
 
     public boolean updateFirstTime(String username) {
@@ -73,7 +77,7 @@ public class DatabaseManager {
 
     //delete a contact
     public boolean deleteUser(long userID) {
-        return database.delete(USER_TABLE, KEY_CONTACTID + "=" + userID, null) > 0;
+        return database.delete(USER_TABLE, KEY_ID + "=" + userID, null) > 0;
     }
 
     //fetch all contacts

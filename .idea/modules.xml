@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidSpesApp.iml" filepath="$PROJECT_DIR$/AndroidSpesApp.iml" />
-      <module fileurl="file://D:\Progetto Android Finale\AndroidSpesApp\AndroidSpesApp.iml" filepath="D:\Progetto Android Finale\AndroidSpesApp\AndroidSpesApp.iml" />
+      <module fileurl="file://D:/Progetto Android Finale/AndroidSpesApp/AndroidSpesApp.iml" filepath="D:/Progetto Android Finale/AndroidSpesApp/AndroidSpesApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

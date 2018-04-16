@@ -4,17 +4,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
 import com.example.corsista.androidspesapp.logic.SharedPreferenceUtility;
-import com.example.corsista.androidspesapp.ui.activity.MainActivity;
 
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_PASSWORD;
 import static java.lang.String.valueOf;
@@ -47,7 +44,7 @@ public class Login extends AppCompatActivity {
                     {
                         dbManager.close();
                         chekLogin = true;
-                        Intent intent = new Intent(Login.this,MainActivity.class);
+                        Intent intent = new Intent(Login.this,ListActivity.class);
                         intent.putExtra("username", usernameString);
                         startActivity(intent);
                     }

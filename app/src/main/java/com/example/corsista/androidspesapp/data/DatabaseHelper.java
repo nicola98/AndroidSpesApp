@@ -21,6 +21,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseManager.KEY_PASSWORD + " TEXT, " +
                     DatabaseManager.KEY_FIRSTTIME + " TEXT" + ");";
 
+    private static final String DATABASE_CREATE2=
+            "CREATE TABLE "+DatabaseManager.DATABASE_TABLE_LIST +" ("+
+                    DatabaseManager.KEY_CONTACTID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    DatabaseManager.KEY_NAME + " TEXT, " +
+                    DatabaseManager.KEY_LISTID + " TEXT" + ");";
+
+
+
     // Costruttore
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -30,6 +38,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
+        database.execSQL(DATABASE_CREATE2);
+
     }
 
     // Questo metodo viene chiamato durante l'upgrade del database,
@@ -37,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion ) {
         database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.USER_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.DATABASE_TABLE_LIST);
         onCreate(database);
     }
 }

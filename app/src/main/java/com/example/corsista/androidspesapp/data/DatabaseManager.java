@@ -63,6 +63,14 @@ public class DatabaseManager {
         return database.update(USER_TABLE, updateValues, KEY_CONTACTID + "=" + contactID, null) > 0;
     }
 
+    public boolean updateFirstTime(String username) {
+        ContentValues updateValues = new ContentValues();
+        updateValues.put(KEY_FIRSTTIME, false);
+        return database.update(USER_TABLE, updateValues, "username" + "=" + username, null) > 0;
+    }
+
+
+
     //delete a contact
     public boolean deleteUser(long userID) {
         return database.delete(USER_TABLE, KEY_CONTACTID + "=" + userID, null) > 0;
@@ -84,8 +92,10 @@ public class DatabaseManager {
     }
 
     public Cursor readUser(String username) {
-        String[] columns = new String[]{KEY_PASSWORD};
+        String[] columns = new String[]{KEY_PASSWORD, KEY_FIRSTTIME};
         return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
     }
+
+
 
 }

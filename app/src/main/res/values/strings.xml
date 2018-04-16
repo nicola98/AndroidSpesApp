@@ -4,5 +4,14 @@
     <string name="password">Password</string>
     <string name="login_Button">Sign Up</string>
     <string name="login_title">Sign Up</string>
+    <string name="page1">ciao questo è il tutorial</string>
+    <string name="page2">sei a metà tutorial</string>
+    <string name="page3">hai finito il tutorial</string>
+    <string name="uno">first page</string>
+    <string name="due">second page</string>
+    <string name="tre">three page</string>
+    <string name="skip">skip</string>
+    <string name="next">next</string>
+
 
 </resources>

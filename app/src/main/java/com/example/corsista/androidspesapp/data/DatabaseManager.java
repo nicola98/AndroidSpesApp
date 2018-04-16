@@ -38,7 +38,7 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
-    private ContentValues createContentValues(String name, String surname, String urlImage, String email, String username, String password, boolean firstTime) {
+    private ContentValues createContentValues(String name, String surname, String urlImage, String email, String username, String password, int firstTime) {
         ContentValues values = new ContentValues();
         values.put( KEY_NAME, name );
         values.put( KEY_SURNAME, surname );
@@ -65,8 +65,8 @@ public class DatabaseManager {
 
     public boolean updateFirstTime(String username) {
         ContentValues updateValues = new ContentValues();
-        updateValues.put(KEY_FIRSTTIME, false);
-        return database.update(USER_TABLE, updateValues, "username" + "=" + username, null) > 0;
+        updateValues.put(KEY_FIRSTTIME, 0);
+        return database.update(USER_TABLE, updateValues, KEY_USERNAME + " = ?", new String[]{username}) > 0;
     }
 
 

@@ -11,5 +11,6 @@
     <string name="due">second page</string>
     <string name="tre">three page</string>
     <string name="skip">skip</string>
-    <string name="next">next</string>
+    <string name="next">finish</string>
+    <string name="add">ADD</string>
 </resources>

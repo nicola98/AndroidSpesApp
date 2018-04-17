@@ -5,6 +5,7 @@ package com.example.corsista.androidspesapp.data;
  */
 
 public class Product {
+    //manca attributo per vedere se è stato preso o no
     String name;
 
     public Product(String name) {

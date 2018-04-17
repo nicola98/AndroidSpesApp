@@ -16,9 +16,9 @@ public class DatabaseManager {
     // Database constants
     public static final String USER_TABLE = "user";
     public static final String PRODUCT_TABLE = "product";
-    public static final String NAME_TABLE = "name";
+    public static final String ASSOCIAZIONE_TABLE = "name";
     public static final String KEY_ID = "_id";
-    public static final String KEY_ID_RIFERIMENTO_USER = "_id_user";
+    public static final String KEY_ID_RIFERIMENTO_LISTA = "_id_lista";
     public static final String KEY_ID_RIFERIMENTO_PRODUCT = "_id_product";
     public static final String KEY_NAME = "name";
     public static final String KEY_SURNAME = "surname";
@@ -100,6 +100,14 @@ public class DatabaseManager {
         return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
     }
 
+    public Cursor readAssociazione(int position) {
+        String[] columns = new String[]{KEY_ID_RIFERIMENTO_PRODUCT};
+        return database.query(ASSOCIAZIONE_TABLE, columns, KEY_ID_RIFERIMENTO_LISTA+" = '"+position+"'", null, null, null, null);
+    }
 
+    public Cursor readProduct(int position) {
+        String[] columns = new String[]{KEY_NAME};
+        return database.query(PRODUCT_TABLE, columns, KEY_ID+" = '"+position+"'", null, null, null, null);
+    }
 
 }

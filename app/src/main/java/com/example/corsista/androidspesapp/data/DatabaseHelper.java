@@ -27,9 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseManager.KEY_NAME + " TEXT" + ");";
 
     private static final String DATABASE_CREATE_NAME=
-            "CREATE TABLE "+DatabaseManager.NAME_TABLE + " ("+
+            "CREATE TABLE "+DatabaseManager.ASSOCIAZIONE_TABLE + " ("+
                     DatabaseManager.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    DatabaseManager.KEY_ID_RIFERIMENTO_USER + " INTEGER, "+
+                    DatabaseManager.KEY_ID_RIFERIMENTO_LISTA + " INTEGER, "+
                     DatabaseManager.KEY_ID_RIFERIMENTO_PRODUCT + "INTEGER" + ");"
                     ;
 
@@ -53,7 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion ) {
         database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.USER_TABLE);
         database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.PRODUCT_TABLE);
-        database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.NAME_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS "+DatabaseManager.ASSOCIAZIONE_TABLE);
         onCreate(database);
     }
 }

@@ -169,7 +169,7 @@ public class DatabaseManager {
 
     public Cursor readUserList(String username) {
         String[] columns = new String[]{KEY_ID_RIFERIMENTO_LIST};
-        return database.query(USER_LIST, columns, KEY_NAME_RIFERIMENTO_USER+" = "+username, null, null, null, null);
+        return database.query(USER_LIST, columns, KEY_NAME_RIFERIMENTO_USER+" = ?", new String[]{username}, null, null, null);
     }
 
     public Cursor readList2(String userName, String name) {

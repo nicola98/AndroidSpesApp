@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
+import com.example.corsista.androidspesapp.data.ListSingleton;
 import com.example.corsista.androidspesapp.data.Lista;
-import com.example.corsista.androidspesapp.data.MainSingleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +20,12 @@ import java.util.List;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder> {
 
     List<Lista> liste = new ArrayList<Lista>();
-    DatabaseManager userDatabaseManager;
     DatabaseManager listDatabaseManager;
     String username;
 
     public MyRecyclerAdapter(Context context) {
         this.updateList(context);
-        this.username = MainSingleton.getInstance().getCurrentUser();
+        this.username = ListSingleton.getInstance().getCurrentUser();
 
     }
 
@@ -65,7 +64,8 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     @Override
     public int getItemCount() {
-        return liste.size();
+      return liste.size();
+
     }
 
     @Override

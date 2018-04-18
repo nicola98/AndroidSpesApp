@@ -34,7 +34,7 @@ public class MainSingleton {
 
 
     public List<Lista> getListe(){
-        return this.liste;
+        return liste;
     }
 
     public void setListe(List<Lista> listSetter){

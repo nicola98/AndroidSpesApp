@@ -4,17 +4,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
+import com.example.corsista.androidspesapp.data.ListSingleton;
 import com.example.corsista.androidspesapp.logic.SharedPreferenceUtility;
-import com.example.corsista.androidspesapp.ui.activity.MainActivity;
 
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_FIRSTTIME;
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_PASSWORD;
@@ -46,13 +44,14 @@ public class Login extends AppCompatActivity {
                     if (passwordString.equals(passwordTrovata)) {
                         chekLogin = true;
                         SharedPreferenceUtility.setUserOnSharedPreferences(usernameString, Login.this);
+                        ListSingleton.getInstance().setCurrentUser(usernameString);
                         if (cursor.getInt(cursor.getColumnIndex(KEY_FIRSTTIME)) == 1) {
                             dbManager.updateFirstTime(usernameString);
                             Intent intent = new Intent(Login.this, Tutorial.class);
                             intent.putExtra("username", usernameString);
                             startActivity(intent);
                         } else {
-                            Intent intent = new Intent(Login.this, MainActivity.class);
+                            Intent intent = new Intent(Login.this, ListActivity.class);
                             intent.putExtra("username", usernameString);
                             startActivity(intent);
                         }
@@ -75,7 +74,7 @@ public class Login extends AppCompatActivity {
                 }
             });
         } else {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ListActivity.class);
             intent.putExtra("username", usernameGet);
             startActivity(intent);
         }

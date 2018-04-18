@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.corsista.androidspesapp.R;
-import com.example.corsista.androidspesapp.ui.activity.MainActivity;
+import com.example.corsista.androidspesapp.ui.activity.ListActivity;
 
 /**
  * Created by Corsista on 09/04/2018.
@@ -30,7 +30,7 @@ public class threeTutorialPage extends Fragment {
         next3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
+                Intent intent = new Intent(getContext(), ListActivity.class);
                 startActivity(intent);
             }
         });
@@ -39,7 +39,7 @@ public class threeTutorialPage extends Fragment {
         skip3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MainActivity.class);
+                Intent intent = new Intent(getContext(), ListActivity.class);
                 startActivity(intent);
             }
         });

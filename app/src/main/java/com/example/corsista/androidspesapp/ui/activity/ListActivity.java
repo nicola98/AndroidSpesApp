@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.Lista;
-import com.example.corsista.androidspesapp.data.MainSingleton;
+import com.example.corsista.androidspesapp.data.ListSingleton;
 import com.example.corsista.androidspesapp.logic.ListDataAccessUtils;
 import com.example.corsista.androidspesapp.ui.adapter.MyRecyclerAdapter;
 
@@ -29,7 +29,7 @@ public class ListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
-        ListDataAccessUtils.initDataSource(getApplicationContext(), MainSingleton.getInstance().getCurrentUser());
+        ListDataAccessUtils.initDataSource(getApplicationContext(), ListSingleton.getInstance().getCurrentUser());
         myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         myAdapter = new MyRecyclerAdapter(this);
         myLayoutManager = new LinearLayoutManager(this);
@@ -56,7 +56,7 @@ public class ListActivity extends AppCompatActivity {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Lista lista = new Lista(String.valueOf(input.getText()), MainSingleton.getInstance().getCurrentUser());
+                                Lista lista = new Lista(String.valueOf(input.getText()), ListSingleton.getInstance().getCurrentUser());
                                 ListDataAccessUtils.addItemToDataSource(getApplicationContext(), lista);
                                 dialog.cancel();
                             }

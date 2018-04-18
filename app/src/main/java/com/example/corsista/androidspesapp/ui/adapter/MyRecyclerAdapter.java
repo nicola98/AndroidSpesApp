@@ -24,9 +24,9 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     DatabaseManager listDatabaseManager;
     String username;
 
-    public MyRecyclerAdapter(Context context, String username) {
+    public MyRecyclerAdapter(Context context) {
         this.updateList(context);
-        this.username = MainSingleton.getCurrentUser();
+        this.username = MainSingleton.getInstance().getCurrentUser();
 
     }
 
@@ -47,8 +47,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
         Cursor cursor = listDatabaseManager.getListsByUser(this.username);
         if(cursor != null && cursor.moveToFirst()){
             do{
-                Lista lista = new Lista(cursor.getInt(cursor.getColumnIndex(listDatabaseManager.KEY_LISTID)),
-                        cursor.getString(cursor.getColumnIndex(listDatabaseManager.KEY_NAME)),
+                Lista lista = new Lista (cursor.getString(cursor.getColumnIndex(listDatabaseManager.KEY_NAME)),
                         cursor.getString(cursor.getColumnIndex(listDatabaseManager.KEY_USERNAME)));
                 this.liste.add(lista);
             }while ((cursor.moveToNext()));

@@ -13,27 +13,25 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.corsista.androidspesapp.R;
-import com.example.corsista.androidspesapp.data.DatabaseManager;
+import com.example.corsista.androidspesapp.data.Lista;
 import com.example.corsista.androidspesapp.data.MainSingleton;
-import com.example.corsista.androidspesapp.logic.SharedPreferenceUtility;
+import com.example.corsista.androidspesapp.logic.ListDataAccessUtils;
 import com.example.corsista.androidspesapp.ui.adapter.MyRecyclerAdapter;
 
-public class ListActivity extends AppCompatActivity{
+public class ListActivity extends AppCompatActivity {
 
 
     private RecyclerView myRecyclerView;
     private MyRecyclerAdapter myAdapter;
     private RecyclerView.LayoutManager myLayoutManager;
 
-
-
-
     @Override
-   protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
+        ListDataAccessUtils.initDataSource(getApplicationContext(), MainSingleton.getInstance().getCurrentUser());
         myRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        myAdapter = new MyRecyclerAdapter(getApplicationContext(), MainSingleton.getCurrentUser());
+        myAdapter = new MyRecyclerAdapter(this);
         myLayoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(myLayoutManager);
         myRecyclerView.setAdapter(myAdapter);
@@ -54,20 +52,17 @@ public class ListActivity extends AppCompatActivity{
                         input.setInputType(InputType.TYPE_CLASS_TEXT);
                         builder.setTitle("AGGIUNGI LISTA");
                         builder.setView(input);
-                        builder.setPositiveButton("CREA", new DialogInterface.OnClickListener(){
+                        builder.setPositiveButton("CREA", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String user = SharedPreferenceUtility.readUserForListFromSharedPreferences(getApplicationContext());
-                                DatabaseManager listDatabaseManager = new DatabaseManager(getApplicationContext());
-                                listDatabaseManager.open();
-                                Long cursor = listDatabaseManager.createLista(String.valueOf(input.getText()), user);
-                                myAdapter.updateList(getApplicationContext());
+                                Lista lista = new Lista(String.valueOf(input.getText()), MainSingleton.getInstance().getCurrentUser());
+                                ListDataAccessUtils.addItemToDataSource(getApplicationContext(), lista);
                                 dialog.cancel();
                             }
                         });
 
-                        builder.setNegativeButton("ANNULLA", new DialogInterface.OnClickListener(){
+                        builder.setNegativeButton("ANNULLA", new DialogInterface.OnClickListener() {
 
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -80,9 +75,5 @@ public class ListActivity extends AppCompatActivity{
             }
         });
     }
-
-
-
-
 
 }

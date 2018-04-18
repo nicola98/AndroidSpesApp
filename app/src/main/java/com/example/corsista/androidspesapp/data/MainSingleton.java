@@ -2,7 +2,6 @@ package com.example.corsista.androidspesapp.data;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainSingleton {
@@ -11,9 +10,8 @@ public class MainSingleton {
     private DatabaseManager databaseManager;
 
     //list
-    private static User user;
-    private List<Lista> liste = new ArrayList<Lista>();
-    private static String currentUser;
+    private List<Lista> liste;
+    private String currentUser;
 
 
     public static MainSingleton getInstance() {
@@ -34,17 +32,13 @@ public class MainSingleton {
     }
 
 
-    public static User getUser() {
-        return user;
-    }
-
-    public static void setUser(User user) {
-        MainSingleton.user = user;
-    }
-
 
     public List<Lista> getListe(){
         return this.liste;
+    }
+
+    public void setListe(List<Lista> listSetter){
+        this.liste=listSetter;
     }
 
     public void addLista(Lista lista){
@@ -65,12 +59,12 @@ public class MainSingleton {
         this.liste.get(position).addProdotti(prodottoo);
     }
 
-    public static void setCurrentUser(String currentUser) {
-        MainSingleton.currentUser = currentUser;
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
     }
 
 
-    public static String getCurrentUser() {
+    public  String getCurrentUser() {
         return currentUser;
     }
 }

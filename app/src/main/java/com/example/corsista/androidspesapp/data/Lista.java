@@ -10,15 +10,13 @@ public class Lista {
     private String username;
     private List<Prodotto> articoli = new ArrayList<Prodotto>();
 
-    public Lista(int id_lista, String nome, String username) {
-        this.id_lista = id_lista;
+    public Lista( String nome, String username) {
         this.nome = nome;
         this.username = username;
     }
 
 
-    public Lista(int id_lista, String nome, String username, List<Prodotto> articoli ) {
-        this.id_lista = id_lista;
+    public Lista( String nome, String username, List<Prodotto> articoli ) {
         this.nome = nome;
         this.username = username;
         this.articoli = articoli;

@@ -28,6 +28,15 @@ public class DatabaseManager {
     public static final String KEY_LISTID = "list_id";
     public static final String DATABASE_TABLE_LIST = "listDelleListe";
 
+    //user list
+    public static final String USER_LIST = "user_list";
+    public static final String KEY_ID_RIFERIMENTO_LIST = "id_riferimento_list";
+    public static final String KEY_NAME_RIFERIMENTO_USER = "name_riferimento_user";
+    public static final String KEY_USER_LIST_ID  = "user_list_id";
+
+
+
+
     public DatabaseManager(Context context) {
         mContext = context;
     }
@@ -108,10 +117,18 @@ public class DatabaseManager {
 
     }
 
+    private ContentValues createUserListContentValues(String name, long id) {
+        ContentValues values = new ContentValues();
+        values.put( KEY_NAME_RIFERIMENTO_USER, name );
+        values.put( KEY_ID_RIFERIMENTO_LIST, id);
+        return values;
+
+    }
+
 
     //mettere invece di user tua classe lista
-    public long createLista(String name, String username ) {
-        ContentValues initialValues = createListContentValues(name, username);
+    public long createLista(Lista lista ) {
+        ContentValues initialValues = createListContentValues(lista.getNomeLista(), lista.getUsername());
         return database.insertOrThrow(DATABASE_TABLE_LIST, null, initialValues);
     }
 
@@ -132,7 +149,7 @@ public class DatabaseManager {
     }
 
     public Cursor readList(int id) {
-        String[] columns = new String[]{"*"};
+        String[] columns = new String[]{KEY_USERNAME, KEY_NAME};
         return database.query(DATABASE_TABLE_LIST, null, "list_id = '"+id+"'", null, null, null, null);
     }
 
@@ -140,4 +157,20 @@ public class DatabaseManager {
         String[] columns = new String[] {"*"};
         return database.query(DATABASE_TABLE_LIST, columns, KEY_USERNAME+" = "+username, null, null, null, null);
     }
+
+    public Cursor readUserList(String username) {
+        String[] columns = new String[]{KEY_ID_RIFERIMENTO_LIST};
+        return database.query(USER_LIST, columns, KEY_NAME_RIFERIMENTO_USER+" = "+username, null, null, null, null);
+    }
+
+    public Cursor readList2(String userName, String name) {
+        String[] columns = new String[]{KEY_LISTID};
+        return database.query(DATABASE_TABLE_LIST, columns, KEY_NAME+" = ? AND "+KEY_USERNAME+" = ?", new String[]{name, userName}, null, null, null);
+    }
+
+    public long createUserList(String userName, long id ) {
+        ContentValues initialValues = createUserListContentValues(userName, id);
+        return database.insertOrThrow(USER_LIST, null, initialValues);
+    }
+
 }

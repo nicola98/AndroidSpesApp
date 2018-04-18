@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "shopMyListDatabase.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 17;
 
     // Lo statement SQL di creazione del database
     private static final String DATABASE_CREATE_USER=
@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "CREATE TABLE "+DatabaseManager.ASSOCIAZIONE_TABLE + " ("+
                     DatabaseManager.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     DatabaseManager.KEY_ID_RIFERIMENTO_LISTA + " INTEGER, "+
-                    DatabaseManager.KEY_ID_RIFERIMENTO_PRODUCT + "INTEGER" + ");"
+                    DatabaseManager.KEY_ID_RIFERIMENTO_PRODUCT + " INTEGER" + ");"
                     ;
 
     // Costruttore

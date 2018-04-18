@@ -6,10 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.MainSingletonDetailList;
-import com.example.corsista.appmeteo.R;
-import com.example.corsista.appmeteo.data.MainSingleton;
-import com.example.corsista.appmeteo.ui.activity.MainActivity;
 
 /**
  * Created by Corsista on 30/03/2018.

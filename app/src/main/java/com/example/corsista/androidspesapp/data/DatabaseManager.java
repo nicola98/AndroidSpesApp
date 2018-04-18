@@ -42,7 +42,7 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
-    private ContentValues createContentValues(String name, String surname, String urlImage, String email, String username, String password, int firstTime) {
+    private ContentValues createContentValuesUser(String name, String surname, String urlImage, String email, String username, String password, int firstTime) {
         ContentValues values = new ContentValues();
         values.put( KEY_NAME, name );
         values.put( KEY_SURNAME, surname );
@@ -55,15 +55,28 @@ public class DatabaseManager {
         return values;
     }
 
+    private ContentValues createContentValuesProduct(String name) {
+        ContentValues values = new ContentValues();
+        values.put( KEY_NAME, name );
+        return values;
+    }
+
+    private ContentValues createContentValuesAssociazione(long idList, long idProduct) {
+        ContentValues values = new ContentValues();
+        values.put( KEY_ID_RIFERIMENTO_LISTA, idList );
+        values.put( KEY_ID_RIFERIMENTO_PRODUCT, idProduct );
+        return values;
+    }
+
     //create a user
     public long createUser(User user ) {
-        ContentValues initialValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
+        ContentValues initialValues = createContentValuesUser(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
         return database.insertOrThrow(USER_TABLE, null, initialValues);
     }
 
     //update a user
     public boolean updateUser(int contactID, User user) {
-        ContentValues updateValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
+        ContentValues updateValues = createContentValuesUser(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
         return database.update(USER_TABLE, updateValues, KEY_ID + "=" + contactID, null) > 0;
     }
 
@@ -100,14 +113,29 @@ public class DatabaseManager {
         return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
     }
 
-    public Cursor readAssociazione(int position) {
+    public Cursor readAssociazione(long position) {
         String[] columns = new String[]{KEY_ID_RIFERIMENTO_PRODUCT};
         return database.query(ASSOCIAZIONE_TABLE, columns, KEY_ID_RIFERIMENTO_LISTA+" = '"+position+"'", null, null, null, null);
     }
 
-    public Cursor readProduct(int position) {
+    public Cursor readProduct(long position) {
         String[] columns = new String[]{KEY_NAME};
         return database.query(PRODUCT_TABLE, columns, KEY_ID+" = '"+position+"'", null, null, null, null);
+    }
+
+    public Cursor readProductByName(String name) {
+        String[] columns = new String[]{KEY_ID};
+        return database.query(PRODUCT_TABLE, columns, KEY_NAME+" = '"+name+"'", null, null, null, null);
+    }
+
+    public long createProduct(Product product ) {
+        ContentValues initialValues = createContentValuesProduct(product.getName());
+        return database.insertOrThrow(PRODUCT_TABLE, null, initialValues);
+    }
+
+    public long createAssociazione(long idList, long idProduct){
+        ContentValues initialValues = createContentValuesAssociazione(idList, idProduct);
+        return database.insertOrThrow(ASSOCIAZIONE_TABLE, null, initialValues);
     }
 
 }

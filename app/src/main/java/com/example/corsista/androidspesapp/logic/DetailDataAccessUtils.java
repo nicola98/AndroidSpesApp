@@ -7,11 +7,11 @@ import android.database.Cursor;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
 import com.example.corsista.androidspesapp.data.MainSingletonDetailList;
 import com.example.corsista.androidspesapp.data.Product;
-import com.example.corsista.appmeteo.data.Citta;
-import com.example.corsista.appmeteo.data.MainSingleton;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_ID;
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_ID_RIFERIMENTO_PRODUCT;
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_NAME;
 
@@ -26,7 +26,16 @@ public class DetailDataAccessUtils {
         return MainSingletonDetailList.getInstance().getItemList();
     }
 
-    public static List<Product> addItemToDataSource(Context context, Product itemToAdd) {
+    public static List<Product> addItemToDataSource(Context context, Product itemToAdd, long position) {
+
+        DatabaseManager dbManager = new DatabaseManager(context);
+        dbManager.open();
+        dbManager.createProduct(itemToAdd);
+        Cursor cursor = dbManager.readProductByName(itemToAdd.getName());
+
+        if(cursor.moveToFirst())
+            dbManager.createAssociazione(position, cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+
         List<Product> datasource = DetailDataAccessUtils.getDataSourceItemList(context);
         datasource.add(itemToAdd);
 
@@ -47,15 +56,23 @@ public class DetailDataAccessUtils {
         return datasource;
     }
 
-    //da modificare con chiamata al db
-    public static void initDataSource(Context context, int position) {
+    public static void initDataSource(Context context, long position) {
+        List<Product> datasource = DetailDataAccessUtils.getDataSourceItemList(context);
+        datasource.clear();
+        MainSingletonDetailList.getInstance().setItemList(datasource);
         DatabaseManager dbManager = new DatabaseManager(context);
         dbManager.open();
         Cursor cursor = dbManager.readAssociazione(position);
         while (cursor.moveToNext())
         {
             Cursor cursor2 = dbManager.readProduct(cursor.getInt(cursor.getColumnIndex(KEY_ID_RIFERIMENTO_PRODUCT)));
-            addItemToDataSource(context, new Product (cursor2.getString(cursor2.getColumnIndex(KEY_NAME))));
+            if(cursor2.moveToFirst()) {
+                datasource = DetailDataAccessUtils.getDataSourceItemList(context);
+                datasource.add(new Product(cursor2.getString(cursor2.getColumnIndex(KEY_NAME))));
+                MainSingletonDetailList.getInstance().setItemList(datasource);
+            }
+            cursor2.close();
         }
+        cursor.close();
     }
 }

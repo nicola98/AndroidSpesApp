@@ -26,7 +26,7 @@
     public static String readUserFromSharedPreferences(Context context){
         SharedPreferences sharedPref = context.getSharedPreferences("User", Context.MODE_PRIVATE);
         String username = sharedPref.getString("Username",null);
-        long token = sharedPref.getLong("Token", 0);
+        long token = sharedPref.getLong("Token",0);
         Calendar calendar = Calendar.getInstance();
         Calendar currCalendar = Calendar.getInstance();
         calendar.setTimeInMillis(token);

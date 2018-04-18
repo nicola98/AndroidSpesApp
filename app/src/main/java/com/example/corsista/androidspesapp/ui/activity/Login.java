@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
                     String passwordTrovata = cursor.getString(cursor.getColumnIndex(KEY_PASSWORD));
                     if (passwordString.equals(passwordTrovata)) {
                         chekLogin = true;
+                        SharedPreferenceUtility.setUserOnSharedPreferences(usernameString, Login.this);
                         if (cursor.getInt(cursor.getColumnIndex(KEY_FIRSTTIME)) == 1) {
                             dbManager.updateFirstTime(usernameString);
                             Intent intent = new Intent(Login.this, Tutorial.class);

@@ -76,7 +76,7 @@
         android:layout_marginEnd="34dp"
         android:layout_marginRight="34dp"
         android:clickable="true"
-        android:text="@string/next"
+        android:text="@string/finish"
         android:textSize="28dp"
         android:textAlignment="center"/>
 

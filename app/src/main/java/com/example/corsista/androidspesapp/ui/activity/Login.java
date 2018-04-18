@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
+import com.example.corsista.androidspesapp.data.MainSingleton;
 import com.example.corsista.androidspesapp.logic.SharedPreferenceUtility;
 
 import static com.example.corsista.androidspesapp.data.DatabaseManager.KEY_PASSWORD;
@@ -47,6 +48,7 @@ public class Login extends AppCompatActivity {
                         Intent intent = new Intent(Login.this,ListActivity.class);
                         intent.putExtra("username", usernameString);
                         startActivity(intent);
+                        MainSingleton.setCurrentUser(usernameString);
                     }
                 }
                 if(!chekLogin)

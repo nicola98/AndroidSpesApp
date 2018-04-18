@@ -13,7 +13,7 @@ public class MainSingleton {
     //list
     private static User user;
     private List<Lista> liste = new ArrayList<Lista>();
-
+    private static String currentUser;
 
 
     public static MainSingleton getInstance() {
@@ -62,8 +62,15 @@ public class MainSingleton {
     }
 
     public void addArticolo(int position, Prodotto prodottoo) {
-        this.liste.get(position).addArticolo(prodottoo);
-
+        this.liste.get(position).addProdotti(prodottoo);
     }
 
+    public static void setCurrentUser(String currentUser) {
+        MainSingleton.currentUser = currentUser;
+    }
+
+
+    public static String getCurrentUser() {
+        return currentUser;
+    }
 }

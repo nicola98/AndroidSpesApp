@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.example.corsista.androidspesapp.R;
 import com.example.corsista.androidspesapp.data.DatabaseManager;
 import com.example.corsista.androidspesapp.data.Lista;
-import com.example.corsista.androidspesapp.logic.SharedPreferenceUtility;
+import com.example.corsista.androidspesapp.data.MainSingleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,12 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     List<Lista> liste = new ArrayList<Lista>();
     DatabaseManager userDatabaseManager;
     DatabaseManager listDatabaseManager;
-    int userId;
+    String username;
 
-    public MyRecyclerAdapter(Context context) {
+    public MyRecyclerAdapter(Context context, String username) {
         this.updateList(context);
+        this.username = MainSingleton.getCurrentUser();
+
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -40,29 +42,16 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
     }
 
     public void updateList(Context context){
-        String username = SharedPreferenceUtility.readUserFromSharedPreferences(context);
-        userDatabaseManager = new DatabaseManager(context);
-        userDatabaseManager.open();
-        Cursor userCursor = userDatabaseManager.readUser(username);
-        userCursor.moveToFirst();
-        this.userId = userCursor.getInt(userCursor.getColumnIndex(userDatabaseManager.KEY_PASSWORD));
-
         listDatabaseManager = new DatabaseManager(context);
         listDatabaseManager.open();
-        Cursor cursor = listDatabaseManager.getListsByUser(this.userId);
-        cursor.moveToFirst();
-        int index = cursor.getCount();
-        if(index > 0){
-            int i = 0;
-            this.liste.clear();
+        Cursor cursor = listDatabaseManager.getListsByUser(this.username);
+        if(cursor != null && cursor.moveToFirst()){
             do{
                 Lista lista = new Lista(cursor.getInt(cursor.getColumnIndex(listDatabaseManager.KEY_LISTID)),
                         cursor.getString(cursor.getColumnIndex(listDatabaseManager.KEY_NAME)),
-                        cursor.getInt(cursor.getColumnIndex(listDatabaseManager.KEY_CONTACTID)));
+                        cursor.getString(cursor.getColumnIndex(listDatabaseManager.KEY_USERNAME)));
                 this.liste.add(lista);
-                i++;
-                cursor.moveToNext();
-            }while (i<index);
+            }while ((cursor.moveToNext()));
         }
     }
 
@@ -82,6 +71,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.My
 
     @Override
     public void onBindViewHolder(MyRecyclerAdapter.MyViewHolder holder, int position) {
-        holder.infoText.setText(liste.get(position).getNome());
+        holder.infoText.setText(liste.get(position).getNomeLista());
     }
 }

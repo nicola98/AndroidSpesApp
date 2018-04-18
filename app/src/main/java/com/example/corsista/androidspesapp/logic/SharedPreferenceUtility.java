@@ -39,11 +39,11 @@
             return null;
     }
 
-        public static int readIdFromSharedPreference(Context context) {
-                SharedPreferences sharedPref = context.getSharedPreferences("User", Context.MODE_PRIVATE);
-                int id = sharedPref.getInt("id",0);
-                long token = sharedPref.getLong("Token", 0);
-                return id;
 
-            }
+        public static String readUserForListFromSharedPreferences(Context context){
+            SharedPreferences sharedPref = context.getSharedPreferences("User", Context.MODE_PRIVATE);
+            String username = sharedPref.getString("Username",null);
+            long token = sharedPref.getLong("Token", 0);
+                return username;
+        }
         }

@@ -7,13 +7,21 @@ public class Lista {
 
     private int id_lista;
     private String nome;
-    private int id_utente;
+    private String username;
     private List<Prodotto> articoli = new ArrayList<Prodotto>();
 
-    public Lista(int id_lista, String nome, int id_utente) {
+    public Lista(int id_lista, String nome, String username) {
         this.id_lista = id_lista;
         this.nome = nome;
-        this.id_utente = id_utente;
+        this.username = username;
+    }
+
+
+    public Lista(int id_lista, String nome, String username, List<Prodotto> articoli ) {
+        this.id_lista = id_lista;
+        this.nome = nome;
+        this.username = username;
+        this.articoli = articoli;
     }
 
 
@@ -23,25 +31,25 @@ public class Lista {
 
 
 
-    public String getNome() {
+    public String getNomeLista() {
         return nome;
     }
 
 
 
-    public int getId_utente() {
-        return id_utente;
+    public String getUsername() {
+        return username;
     }
 
 
 
-    public List<Prodotto> getArticoli() {
+    public List<Prodotto> getProdotti() {
         return articoli;
     }
 
 
 
-    public void addArticolo(Prodotto prodotto) {
+    public void addProdotti(Prodotto prodotto) {
         this.articoli.add(prodotto);
     }
 }

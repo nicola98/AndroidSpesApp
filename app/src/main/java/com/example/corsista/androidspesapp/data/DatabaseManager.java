@@ -15,7 +15,6 @@ public class DatabaseManager {
 
     // Database constants
     public static final String USER_TABLE = "user";
-    public static final String DATABASE_TABLE_LIST = "listDelleListe";
     public static final String KEY_CONTACTID = "_id";
     public static final String KEY_NAME = "name";
     public static final String KEY_SURNAME = "surname";
@@ -24,7 +23,10 @@ public class DatabaseManager {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_FIRSTTIME = "firstTime";
+
+    //list
     public static final String KEY_LISTID = "list_id";
+    public static final String DATABASE_TABLE_LIST = "listDelleListe";
 
     public DatabaseManager(Context context) {
         mContext = context;
@@ -98,30 +100,30 @@ public class DatabaseManager {
 //LISTA
 
 
-    private ContentValues createListContentValues(String name, int id) {
+    private ContentValues createListContentValues(String name, String username) {
         ContentValues values = new ContentValues();
         values.put( KEY_NAME, name );
-        values.put(KEY_CONTACTID, id);
+        values.put(KEY_USERNAME, username);
         return values;
 
     }
 
 
     //mettere invece di user tua classe lista
-    public long createLista(String name, int id ) {
-        ContentValues initialValues = createListContentValues(name, id);
+    public long createLista(String name, String username ) {
+        ContentValues initialValues = createListContentValues(name, username);
         return database.insertOrThrow(DATABASE_TABLE_LIST, null, initialValues);
     }
 
     //mettere invece di user tua classe lista
     public boolean updateLista(Lista lista) {
-        ContentValues updateValues = createListContentValues(lista.getNome(), lista.getId_utente());
+        ContentValues updateValues = createListContentValues(lista.getNomeLista(), lista.getUsername());
         return database.update(DATABASE_TABLE_LIST, updateValues, KEY_LISTID + "=" + lista.getId_lista(), null) > 0;
     }
 
     //delete a contact
     public boolean deleteLista(Lista  lista) {
-        return database.delete(DATABASE_TABLE_LIST, KEY_CONTACTID + "=" + lista.getId_lista(), null) > 0;
+        return database.delete(DATABASE_TABLE_LIST, KEY_USERNAME + "=" + lista.getUsername(), null) > 0;
     }
 
     //fetch all contacts
@@ -131,11 +133,11 @@ public class DatabaseManager {
 
     public Cursor readList(int id) {
         String[] columns = new String[]{"*"};
-        return database.query(DATABASE_TABLE_LIST, columns, "list_id = '"+id+"'", null, null, null, null);
+        return database.query(DATABASE_TABLE_LIST, null, "list_id = '"+id+"'", null, null, null, null);
     }
 
-    public Cursor getListsByUser(int id_user){
+    public Cursor getListsByUser(String username){
         String[] columns = new String[] {"*"};
-        return database.query(DATABASE_TABLE_LIST, columns, KEY_CONTACTID+" = "+id_user, null, null, null, null);
+        return database.query(DATABASE_TABLE_LIST, columns, KEY_USERNAME+" = "+username, null, null, null, null);
     }
 }

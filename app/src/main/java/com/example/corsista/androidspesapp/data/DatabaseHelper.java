@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     DatabaseManager.KEY_EMAIL + " TEXT, " +
                     DatabaseManager.KEY_USERNAME + " TEXT, " +
                     DatabaseManager.KEY_PASSWORD + " TEXT, " +
-                    DatabaseManager.KEY_FIRSTTIME + " TEXT" + ");";
+                    DatabaseManager.KEY_FIRSTTIME + " INTEGER" + ");";
 
     private static final String DATABASE_CREATE2=
             "CREATE TABLE "+DatabaseManager.DATABASE_TABLE_LIST +" ("+

@@ -51,7 +51,7 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
-    private ContentValues createContentValues(String name, String surname, String urlImage, String email, String username, String password, boolean firstTime) {
+    private ContentValues createContentValues(String name, String surname, String urlImage, String email, String username, String password, int firstTime) {
         ContentValues values = new ContentValues();
         values.put( KEY_NAME, name );
         values.put( KEY_SURNAME, surname );
@@ -60,6 +60,7 @@ public class DatabaseManager {
         values.put( KEY_USERNAME, username );
         values.put( KEY_PASSWORD, password );
         values.put( KEY_FIRSTTIME, firstTime );
+
         return values;
     }
 
@@ -79,6 +80,14 @@ public class DatabaseManager {
         ContentValues updateValues = createContentValues(user.getName(), user.getSurname(), user.getUrlImage(), user.getEmail(), user.getUsername(), user.getPassword(), user.getFirstTime());
         return database.update(USER_TABLE, updateValues, KEY_CONTACTID + "=" + contactID, null) > 0;
     }
+
+    public boolean updateFirstTime(String username) {
+        ContentValues updateValues = new ContentValues();
+        updateValues.put(KEY_FIRSTTIME, 0);
+        return database.update(USER_TABLE, updateValues, KEY_USERNAME + " = ?", new String[]{username}) > 0;
+    }
+
+
 
     //delete a contact
     public boolean deleteUser(long userID) {
@@ -101,7 +110,7 @@ public class DatabaseManager {
     }
 
     public Cursor readUser(String username) {
-        String[] columns = new String[]{KEY_PASSWORD};
+        String[] columns = new String[]{KEY_PASSWORD, KEY_FIRSTTIME};
         return database.query(USER_TABLE, columns, "username = '"+username+"'", null, null, null, null);
     }
 

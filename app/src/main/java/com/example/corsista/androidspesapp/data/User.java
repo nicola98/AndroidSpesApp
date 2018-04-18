@@ -8,7 +8,7 @@ public class User {
     private String email;
     private String username;
     private String password;
-    private boolean firstTime = true;
+    private int firstTime;
 
     public User(String name, String surname, String email, String username, String password) {
         this.name = name;
@@ -17,7 +17,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.urlImage="";
-        this.firstTime=true;
+        this.firstTime=1;
     }
 
     public User(String name, String surname, String urlImage, String email, String username, String password) {
@@ -27,14 +27,14 @@ public class User {
         this.username = username;
         this.password = password;
         this.urlImage = urlImage;
-        this.firstTime=true;
+        this.firstTime=1;
     }
 
-    public boolean getFirstTime() {
+    public int getFirstTime() {
         return firstTime;
     }
 
-    public void setFirstTime(boolean firstTime) {
+    public void setFirstTime(int firstTime) {
         this.firstTime = firstTime;
     }
 
